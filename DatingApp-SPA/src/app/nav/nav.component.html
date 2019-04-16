@@ -19,7 +19,7 @@
 
     <div *ngIf="isLoggedIn()" class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome User
+        Welcome {{authService.decodedToken?.unique_identifier | titlecase }}
       </button>
       <div class="dropdown-menu">
         <a class="dropdown-item" href="#"><i class= "fa fa-user"></i>Edit Profile</a>
