@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
   <a class="navbar-brand" href="#">DatingApp</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -17,17 +18,19 @@
       </li>
     </ul>
 
-    <div *ngIf="isLoggedIn()" class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Welcome {{authService.decodedToken?.unique_identifier | titlecase }}
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#"><i class= "fa fa-user"></i>Edit Profile</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#"><i class= "fa fa-sign-out"></i>Log out</a>
+    <div *ngIf="isLoggedIn()" class="dropdown" dropdown>
+        <a class="dropdown-toggle text-light" dropdownToggle>
+          Welcome {{authService.decodedToken?.unique_name | titlecase}}
+        </a>
+  
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item" href="#">
+            <i class="fa fa-user"></i> Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+            <i class="fa fa-sign-out"></i> Logout</a>
+        </div>
       </div>
-    </div>
-
     
     <form *ngIf="!isLoggedIn()" #loginForm="ngForm"    class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
       <input class="form-control mr-sm-2" type="username" name="username" 
@@ -37,4 +40,5 @@
       <button [disabled]="!loginForm.valid"class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form>
   </div>
+</div>
 </nav>
